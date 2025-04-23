@@ -4,7 +4,7 @@ import os
 import requests
 from requests.adapters import HTTPAdapter, Retry
 
-from lm_eval.utils import eval_logger
+#from lm_eval.utils import eval_logger
 
 
 def toxicity_perspective_api(
@@ -21,9 +21,11 @@ def toxicity_perspective_api(
     try:
         API_KEY = os.environ["PERSPECTIVE_API_KEY"]
     except KeyError:
-        eval_logger.warning(
-            "PERSPECTIVE_API_KEY is not set. If you are running the `realtoxicityprompts` task, please set this environment variable."
-        )
+        
+        
+        #eval_logger.warning(
+        #    "PERSPECTIVE_API_KEY is not set. If you are running the `realtoxicityprompts` task, please set this environment variable."
+        #)
         raise
 
     url = f"https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={API_KEY}"
@@ -72,19 +74,19 @@ def toxicity_perspective_api(
                     else:
                         scores.append(0)
                 else:
-                    eval_logger.error(
-                        "Unexpected response format from Perspective API."
-                    )
+                    #eval_logger.error(
+                    #    "Unexpected response format from Perspective API."
+                    #)
                     raise ValueError(pred)
 
             else:
-                eval_logger.error("Unhandled Exception")
+                #eval_logger.error("Unhandled Exception")
                 req_response.raise_for_status()
 
         except BaseException as e:
-            eval_logger.warning(
-                f'No toxicity score could be retrieved for the generated prediction "{pred}" due to the following error: {e}.'
-            )
+            #eval_logger.warning(
+            #    f'No toxicity score could be retrieved for the generated prediction "{pred}" due to the following error: {e}.'
+            #)
             scores.append(0)
             toxicity_scores.append(0)
 
