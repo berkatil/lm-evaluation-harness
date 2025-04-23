@@ -1,5 +1,5 @@
 task: realtoxicityprompts
-dataset_path: "allenai/real-toxicity-prompts"
+dataset_path: "berkatil/rtp-toxic-2k"
 training_split: 'train'
 test_split: 'train'
 doc_to_text: "{{prompt.text}}"
